@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,300,401,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .hide-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .custom-scrollbar ::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+
+  .custom-scrollbar ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+
+  .custom-scrollbar ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+
+  .custom-scrollbar ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
 /* draggable and onDragStart */
 
 /* git init
@@ -9,11 +44,4 @@ git add README.md
 git commit -m "first commit"
 git branch -M main
 git remote add origin git@github.com:Madaraka02/todos-api.git
-git push -u origin main */
-
-/* git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:Madaraka02/todos-frontend.git
 git push -u origin main */
