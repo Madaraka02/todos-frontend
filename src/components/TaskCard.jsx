@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useDrag } from 'react-dnd';
 import { CloseIcon, DeleteIcon, EditIcon } from '../assets/icons';
 import ModalLayout from './modals/ModalLayout';
 import TaskDescription from './modals/TaskDescription';
@@ -12,15 +13,21 @@ const TaskCard = ({type, description, end_date}) => {
   const handleCloseDetails = () => {
       setOpenDetailsModal(false)
     }
-    const handleDrag = (e) => {
+    const [{ isDragging }, drag] = useDrag(() => ({
+      type: "task",
+      item: {id:1},
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging()
+      })
+    }))
+    console.log("isDragging",isDragging)
 
-    }
+   
   return (
     <>
     <div
-    draggable
-    // onDragStart={}
-     className={`font-satoshi w-full relative rounded-md shadow-md px-4 py-3 cursor-pointer ${type === 'new'? 'border-amber-300' : type === 'progress'? 'border-purple-600' : type === 'complete'? 'border-green-600' : ''} border`}>
+    ref={drag}
+     className={`font-satoshi w-full relative rounded-md shadow-md px-4 py-3 cursor-pointer ${type === 'new'? 'border-amber-300' : type === 'progress'? 'border-purple-600' : type === 'complete'? 'border-green-600' : ''} border ${isDragging? 'opacity-10':'opacity-100'}`}>
       <div className=" absolute top-1 right-1 justify-center items-center ">
         <DeleteIcon className='w-5 h-5 text-red-600'/>
       </div>

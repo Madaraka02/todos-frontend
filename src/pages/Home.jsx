@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 import ModalLayout from '../components/modals/ModalLayout';
 import NewTask from '../components/modals/NewTask';
 import Section from '../components/Section';
@@ -12,6 +14,8 @@ function Home() {
   const statuses = ['new','progress','complete']  
   return (
     <>
+    <DndProvider backend={HTML5Backend}>
+
     <div className="container mx-auto w-full">
 
     <div className='font-satoshi flex flex-col gap-2 w-full p-6 h-full'>
@@ -37,6 +41,7 @@ function Home() {
         New task</button>
     </div>
     </div>
+    </DndProvider>
 
     {openAddTaskModal && 
     <ModalLayout open={openAddTaskModal} setToggleModal={handleCloseAddTask} title='Add new task'>
