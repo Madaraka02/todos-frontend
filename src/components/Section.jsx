@@ -24,7 +24,7 @@ const Section = ({status, tasks}) => {
         <SectionHeader status={status} taskCount={2}/>
     <div className="flex flex-col gap-1 pt-5">
       <TaskCard 
-      type='new'
+      taskType='complete'
       description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       />
       
