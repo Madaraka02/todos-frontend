@@ -5,7 +5,7 @@ import TaskCard from '../components/TaskCard'
 
 function Home() {
   const [openAddTaskModal, setOpenAddTaskModal] = useState(false);
-  const handleCloseVariants = () => {
+  const handleCloseAddTask = () => {
       setOpenAddTaskModal(false)
     }
   return (
@@ -32,7 +32,13 @@ function Home() {
           </div>
           <div className="flex flex-col gap-1">
             <TaskCard type='progress'
-            description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            description={`Here's a block of text from a blog post that isn't conveniently three lines long like you designed
+            for originally. It's probably like 6 lines on mobile or even on desktop depending on how you have
+            things laid out. Truly a big pain in the derriere, and not the sort of thing you expected to be
+            wasting your time trying to deal with at 4:45pm on a Friday am I right? You've got tickets to
+            SmackDown and you heard there's gonna be a dark match with that local guy from two towns over that
+            your cousin went to high school with before the show starts, and you're gonna miss it if you're
+            not there early.`}
 
             />
           </div>
@@ -65,7 +71,7 @@ function Home() {
     </div>
 
     {openAddTaskModal && 
-    <ModalLayout open={openAddTaskModal} setToggleModal={handleCloseVariants} title='Add new task'>
+    <ModalLayout open={openAddTaskModal} setToggleModal={handleCloseAddTask} title='Add new task'>
       <NewTask/>
     </ModalLayout>
     }
