@@ -1,7 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ModalLayout from '../components/modals/ModalLayout';
+import NewTask from '../components/modals/NewTask';
 import TaskCard from '../components/TaskCard'
 
 function Home() {
+  const [openAddTaskModal, setOpenAddTaskModal] = useState(false);
+  const handleCloseVariants = () => {
+      setOpenAddTaskModal(false)
+    }
   return (
     <>
     <div className="container mx-auto w-full">
@@ -47,7 +53,9 @@ function Home() {
       
     </div>
     <div className="flex px-4">
-      <button className='bg-blue-600 px-4 py-2 rounded-md items-center text-white flex flex-row gap-3 text-[18px] font-satoshi'>
+      <button
+      onClick={() => setOpenAddTaskModal(true)}
+       className='bg-blue-600 px-4 py-2 rounded-md items-center text-white flex flex-row gap-3 text-[18px] font-satoshi'>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
     </svg>
@@ -55,6 +63,12 @@ function Home() {
         New task</button>
     </div>
     </div>
+
+    {openAddTaskModal && 
+    <ModalLayout open={openAddTaskModal} setToggleModal={handleCloseVariants} title='Add new task'>
+      <NewTask/>
+    </ModalLayout>
+    }
     </>
   )
 }
