@@ -9,6 +9,11 @@ const TaskCard = ({taskType, description, end_date}) => {
   const [openEditing, setOpenEditing] = useState(false);
   const [content, setContent] = useState(description)
 
+  const [start, setStart] = useState(false);
+  const [completed, setCompleted] = useState(false);
+
+
+
   const editableStatuses = ['new', 'progress']
 
   const handleCloseDetails = () => {
@@ -21,7 +26,9 @@ const TaskCard = ({taskType, description, end_date}) => {
         isDragging: !!monitor.isDragging()
       })
     }))
-    console.log("isDragging",isDragging)
+    console.log("start",start)
+    console.log("completed",completed)
+
 
    
   return (
@@ -52,7 +59,10 @@ const TaskCard = ({taskType, description, end_date}) => {
         <textarea value={content} onChange={(e) =>setContent(e.target.value)} rows={5} placeholder="taskType your Description" taskType="text" className='px-4 py-2 rounded-md outline-none border text-[14px] hide-scrollbar' />
         {editableStatuses.includes(taskType) &&
         <div className="flex flex-row items-center gap-1 py-2">
-          <input type="checkbox" name="" id="" className='w-4 h-4 rounded-md accent-blue-600' />
+          <input 
+          checked={taskType === 'new' ? start:completed}
+          onChange={(e) => {taskType === 'new' ? setStart(e.target.checked): setCompleted(e.target.checked)}}
+          type="checkbox" name="" id="" className='w-4 h-4 rounded-md accent-blue-600' />
           <p className='text-[14px]'>{taskType ==='new'?'Start':taskType ==='progress'?'Complete':''}</p>
         </div>
         }
