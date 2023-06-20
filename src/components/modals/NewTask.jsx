@@ -8,7 +8,7 @@ function NewTask() {
     const [description, setDescription] = useState('')
     const [value, setValue] = useState();
 
-    const handleSubscribe = async () => {
+    const handleSubmit = async () => {
         // setSubmitting('Submitting ...')
         const payload = {
             description:description
@@ -37,7 +37,7 @@ function NewTask() {
                 </LocalizationProvider>
                 </div>
                 <div className="flex flex-row-reverse w-full">
-                    <button onClick={handleSubscribe} className={`${description.length > 0 ? 'bg-blue-600 text-white':'bg-gray-200 pointer-events-none'} px-4 py-2  text-center text-[16px]`}>Add task</button>
+                    <button onClick={handleSubmit} className={`${description.length > 0 ? 'bg-blue-600 text-white':'bg-gray-200 pointer-events-none'} px-4 py-2  text-center text-[16px]`}>Add task</button>
                 </div>
             </div>
         </div>
