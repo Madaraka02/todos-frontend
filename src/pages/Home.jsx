@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ModalLayout from '../components/modals/ModalLayout';
 import NewTask from '../components/modals/NewTask';
+import Section from '../components/Section';
 import TaskCard from '../components/TaskCard'
 
 function Home() {
@@ -8,53 +9,20 @@ function Home() {
   const handleCloseAddTask = () => {
       setOpenAddTaskModal(false)
     }
+  const statuses = ['new','progress','complete']  
   return (
     <>
     <div className="container mx-auto w-full">
 
     <div className='font-satoshi flex flex-col gap-2 w-full p-6 h-full'>
-      <div className="grid grid-cols-3 gap-4">
-        <div className="col-span-1 flex flex-col gap-2">
-          <div className=" flex flex-row cursor-pointer justify-between items-center bg-gray-200 p-2 rounded-md">
-            <p className='font-semibold'>Next Up</p>
-            <div className="rounded-full w-6 h-6 bg-amber-500 justify-center text-center text-white">1</div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <TaskCard type='new'
-            description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-            />
-          </div>
-        </div>
-        <div className="col-span-1 flex flex-col gap-2">
-          <div className=" flex flex-row cursor-pointer justify-between items-center bg-gray-200 p-2 rounded-md">
-            <p className='font-semibold'>In Progress</p>
-            <div className="rounded-full w-6 h-6 bg-purple-600 justify-center text-center text-white">1</div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <TaskCard type='progress'
-            description={`Here's a block of text from a blog post that isn't conveniently three lines long like you designed
-            for originally. It's probably like 6 lines on mobile or even on desktop depending on how you have
-            things laid out. Truly a big pain in the derriere, and not the sort of thing you expected to be
-            wasting your time trying to deal with at 4:45pm on a Friday am I right? You've got tickets to
-            SmackDown and you heard there's gonna be a dark match with that local guy from two towns over that
-            your cousin went to high school with before the show starts, and you're gonna miss it if you're
-            not there early.`}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {statuses?.map((status, index) => (
 
-            />
-          </div>
-        </div>
         <div className="col-span-1 flex flex-col gap-2">
-          <div className=" flex flex-row cursor-pointer justify-between items-center bg-gray-200 p-2 rounded-md">
-            <p className='font-semibold'>Complete</p>
-            <div className="rounded-full w-6 h-6 bg-green-600 justify-center text-center text-white">1</div>
-          </div>
-          <div className="flex flex-col gap-1">
-            <TaskCard type='complete'
-            description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-
-            />
-          </div>
+          <Section status={status}/>
         </div>
+        ))}
+
       </div>
       
     </div>
