@@ -19,7 +19,8 @@ const Section = ({status, tasks}) => {
   return (
     <div
     ref={drop}
-     className="w-full flex flex-col gap-2">
+     className={`w-full flex flex-col gap-2 
+     ${isOver && status === 'new'? 'border border-amber-400 h-full p-3 rounded-md':isOver && status === 'progress'? 'border border-purple-600 h-full p-3 rounded-md':isOver && status === 'complete'? 'border border-green-600 h-full p-3 rounded-md':''}`}>
         <SectionHeader status={status} taskCount={2}/>
     <div className="flex flex-col gap-1 pt-5">
       <TaskCard 
