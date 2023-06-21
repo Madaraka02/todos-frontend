@@ -45,7 +45,7 @@ function Home() {
 
     {openAddTaskModal && 
     <ModalLayout open={openAddTaskModal} setToggleModal={handleCloseAddTask} title='Add new task'>
-      <NewTask/>
+      <NewTask setToggleModal={handleCloseAddTask}/>
     </ModalLayout>
     }
     </>

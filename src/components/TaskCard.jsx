@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDrag } from 'react-dnd';
+import { useDispatch } from 'react-redux';
 import { deletTask, updateTask } from '../api/actions';
 import { CloseIcon, DeleteIcon, EditIcon } from '../assets/icons';
 import DateTimeFormatter from './DateTimeFormatter';
@@ -16,7 +17,7 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
   const [updatedDescription, setUpdatedDescription] = useState('');
 
 
-
+  const dispatch = useDispatch()
 
   const editableStatuses = ['new', 'progress']
 
@@ -44,7 +45,7 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
 
         }
       
-      await updateTask(payload, id)
+      await updateTask(dispatch,payload, id)
       .then((data) => {
         // dispatch to store or set state variable
         console.log('data',data)
@@ -58,7 +59,7 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
     }
 
     const handleDeleteTask = async (id) => {
-      await deletTask(id)
+      await deletTask(dispatch,id)
       .then((data) => {
         // dispatch to store or set state variable
         console.log('data',data)

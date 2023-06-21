@@ -37,7 +37,7 @@ const Section = ({status}) => {
           status:status
         }
         
-        await updateTask(payload, id)
+        await updateTask(dispatch,payload, id)
         .then((data) => {
           // dispatch to store or set state variable
           console.log('data',data)

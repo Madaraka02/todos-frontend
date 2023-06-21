@@ -3,8 +3,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { addTask } from '../../api/actions';
+import { useDispatch } from 'react-redux';
 
-function NewTask() {
+function NewTask({setToggleModal}) {
+    const dispatch = useDispatch()
 
     const [description, setDescription] = useState('')
     const [value, setValue] = useState();
@@ -16,13 +18,14 @@ function NewTask() {
             description:description,
             end_at:value
         }     
-        await addTask(payload)
+        await addTask(dispatch,payload)
         .then((data) => {
             // dispatch to store or set state variable
             console.log('data',data)
             setProcessing(false)
             setDescription('')
             setValue()
+            setToggleModal(true)
 
       
           })
@@ -31,6 +34,7 @@ function NewTask() {
             setProcessing(false)
             setDescription('')
             setValue()
+            setToggleModal(true)
 
           })
     

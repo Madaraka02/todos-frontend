@@ -15,7 +15,7 @@ export const getTasks = async (dispatch) => {
 }
 
 
-export const updateTask = async (payload, id) => {
+export const updateTask = async (dispatch,payload, id) => {
 
     const url = (`tasks/${id}/`)
     ServerRequest('v1')
@@ -26,6 +26,7 @@ export const updateTask = async (payload, id) => {
         })
         .then((res) => {
             console.log(res);
+            getTasks(dispatch)
             if (res.status === 200 || res.status === 201) {
                 console.log('Submitted 200,201')
                     toast.info(`${res?.data?.success}`)
@@ -40,7 +41,7 @@ export const updateTask = async (payload, id) => {
         })
 }
 
-export const deletTask = async (id) => {
+export const deletTask = async (dispatch,id) => {
 
     const url = (`tasks/${id}/`)
     ServerRequest('v1')
@@ -50,6 +51,7 @@ export const deletTask = async (id) => {
         })
         .then((res) => {
             console.log(res);
+            getTasks(dispatch)
             if (res.status === 200 || res.status === 201) {
                 console.log('Submitted 200,201')
                     toast.info(`${res?.data?.success}`)
@@ -66,7 +68,7 @@ export const deletTask = async (id) => {
 
 
 
-export const addTask = async (payload) => {
+export const addTask = async (dispatch,payload) => {
 
     const url = (`tasks/`)
     ServerRequest('v1')
@@ -77,6 +79,7 @@ export const addTask = async (payload) => {
         })
         .then((res) => {
             console.log(res);
+            getTasks(dispatch)
             if (res.status === 200 || res.status === 201) {
                 console.log('Submitted 200,201')
                     toast.info(`${res?.data?.success}`)
