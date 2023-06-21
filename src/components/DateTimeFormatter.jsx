@@ -10,7 +10,7 @@ const DateTimeFormatter = ({ end_date, over_due }) => {
   });
 
   return (
-    <div className={`flex flex-row gap-2 ${over_due?'bg-red-500':'bg-green-400'} text-white text-[14px] py-1 px-2  rounded-md `}>
+    <div className={`flex flex-row gap-2 ${over_due?'bg-red-500':'bg-green-400'} text-white text-[14px] px-2  rounded-sm `}>
     <p>{formattedDateTime}</p>
   </div>
   );

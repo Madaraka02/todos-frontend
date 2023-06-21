@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const REACT_APP_BACKEND_URL = 'http://127.0.0.1:8000/'
+const REACT_APP_BACKEND_URL = 'http://127.0.0.1:8000/api/'
 
 
 export const hostApi = () => {
@@ -23,7 +23,6 @@ const ServerRequest = (version = "v1") => {
         headers: {
             "Content-Type": "application/json",
         },
-        withCredentials: true
     });
 
     return served;

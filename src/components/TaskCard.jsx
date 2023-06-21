@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
 import { useDrag } from 'react-dnd';
+import { updateTask } from '../api/actions';
 import { CloseIcon, DeleteIcon, EditIcon } from '../assets/icons';
 import DateTimeFormatter from './DateTimeFormatter';
 import ModalLayout from './modals/ModalLayout';
 import TaskDescription from './modals/TaskDescription';
 
-const TaskCard = ({taskType, description, end_date}) => {
+const TaskCard = ({taskType, description, end_date,taskid}) => {
   const [openDetailsModal, setOpenDetailsModal] = useState(false);
   const [openEditing, setOpenEditing] = useState(false);
   const [content, setContent] = useState(description)
 
   const [start, setStart] = useState(false);
   const [completed, setCompleted] = useState(false);
+  const [updatedDescription, setUpdatedDescription] = useState('');
+
 
 
 
@@ -22,16 +25,39 @@ const TaskCard = ({taskType, description, end_date}) => {
     }
     const [{ isDragging }, drag] = useDrag(() => ({
       type: "task",
-      item: {id:1},
+      item: {id:taskid,description:description},
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging()
       })
     }))
-    console.log("start",start)
-    console.log("completed",completed)
 
+    const handleUpdateTask = async (id) => {
 
-   
+      const payload = {
+        description:content
+      }
+        if(start){
+          payload.status='progress'
+        }
+        if (completed){
+          payload.status='complete'
+
+        }
+      
+      await updateTask(payload, id)
+      .then((data) => {
+        // dispatch to store or set state variable
+        console.log('data',data)
+  
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  
+
+    }
+    
+    
   return (
     <>
     <div
@@ -67,7 +93,7 @@ const TaskCard = ({taskType, description, end_date}) => {
         }
         <div className="flex flex-row-reverse">
 
-        <button className={`bg-blue-600 text-white px-4 py-1  text-center text-[16px]`}>Save</button>
+        <button onClick={() => handleUpdateTask(taskid)} className={`bg-blue-600 text-white px-4 py-1  text-center text-[16px]`}>Save</button>
         </div>
 
       </div>
