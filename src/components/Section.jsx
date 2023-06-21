@@ -1,24 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import { useDrop } from 'react-dnd'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getTasks, updateTask } from '../api/actions'
+import { setTasks } from '../server/stateController/features/tasks/taskSlice'
 import SectionHeader from './SectionHeader'
 import TaskCard from './TaskCard'
 // import data from '../data.json'
 
 const Section = ({status}) => {
-    const [data, setData] = useState([])
+    // const [data, setData] = useState([])
+    const data = useSelector((state) => state.tasks.tasks)
 
+    const dispatch = useDispatch()
     const fetchTasks = async () => {
-        await getTasks()
-        .then((data) => {
-          // dispatch to store or set state variable
-          // console.log('data',data)
-          setData(data)
+        await getTasks(dispatch)
+        // .then((data) => {
+        //   // dispatch to store or set state variable
+        //   dispatch(setTasks(data))
+        // //   setData(data)
     
-        })
-        .catch((err) => {
-          console.log(err)
-        })
+        // })
+        // .catch((err) => {
+        //   console.log(err)
+        // })
     
       }
     useEffect(() => {

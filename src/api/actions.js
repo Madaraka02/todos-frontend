@@ -1,15 +1,16 @@
 import { ServerRequest } from "../server"
 import { toast } from 'react-toastify';
+import { setTasks } from "../server/stateController/features/tasks/taskSlice";
 
 
-export const getTasks = async () => {
+export const getTasks = async (dispatch) => {
     const url = `tasks/`
 
     const { data } = await ServerRequest('v1').request({
         url: url,
         method: 'get',
     })
-
+    dispatch(setTasks(data))
     return data
 }
 
