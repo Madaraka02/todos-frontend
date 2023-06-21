@@ -57,6 +57,8 @@ function NewTask({setToggleModal}) {
                     <textarea value={description} onChange={(e) =>setDescription(e.target.value)} rows={5} placeholder="Type your Description" type="text" className='px-4 py-2 rounded-md outline-none border text-[14px]' />
                 </div>
                 <div className="flex flex-col w-full gap-1">
+                <label htmlFor="" className='text-[16px]'>End date</label>
+
                 <LocalizationProvider dateAdapter={AdapterDayjs} className='w-full' style={{with:'100%'}}>
     
                     <DateCalendar value={value} onChange={handleDateChange} className='w-full'/>
