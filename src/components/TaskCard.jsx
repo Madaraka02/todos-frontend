@@ -82,8 +82,11 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
         <DeleteIcon className='w-5 h-5 text-red-600'/>
       </div>
       <p onClick={() => setOpenDetailsModal(true)} className='line-clamp-2'>{description}</p>
-      <div className="flex flex-row justify-between">
+      <div className="flex flex-col gap-1 justify-between">
+        <div className="flex">
+
         <DateTimeFormatter end_date={end_date} status={taskType}/>
+        </div>
 
         <div onClick={() => setOpenEditing(!openEditing)} className="">
         {openEditing ?
