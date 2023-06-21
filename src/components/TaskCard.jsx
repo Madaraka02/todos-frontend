@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDrag } from 'react-dnd';
 import { CloseIcon, DeleteIcon, EditIcon } from '../assets/icons';
+import DateTimeFormatter from './DateTimeFormatter';
 import ModalLayout from './modals/ModalLayout';
 import TaskDescription from './modals/TaskDescription';
 
@@ -41,10 +42,8 @@ const TaskCard = ({taskType, description, end_date}) => {
       </div>
       <p onClick={() => setOpenDetailsModal(true)} className='line-clamp-2'>{description}</p>
       <div className="flex flex-row justify-between">
-        <div className={`flex flex-row gap-2 text-[14px] ${taskType === 'new'? 'bg-amber-400' : taskType === 'progress'? 'bg-purple-600' : taskType === 'complete'? 'bg-green-600' : ''} py-1 px-2  rounded-md text-white`}>
-          <p>Jun, 22</p>
-          {/* <p>2 days</p> */}
-        </div>
+        <DateTimeFormatter end_date='2023-06-20T10:00:00Z'/>
+
         <div onClick={() => setOpenEditing(!openEditing)} className="">
         {openEditing ?
           <CloseIcon/>
