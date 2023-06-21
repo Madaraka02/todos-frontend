@@ -72,6 +72,7 @@ const Section = ({status}) => {
       taskid={tas.id}
       taskType={tas.status}
       description={tas.description}
+      end_date={tas.end_at}
       />
         ))}
       

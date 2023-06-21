@@ -80,7 +80,7 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
       </div>
       <p onClick={() => setOpenDetailsModal(true)} className='line-clamp-2'>{description}</p>
       <div className="flex flex-row justify-between">
-        <DateTimeFormatter end_date='2023-06-20T10:00:00Z'/>
+        <DateTimeFormatter end_date={end_date}/>
 
         <div onClick={() => setOpenEditing(!openEditing)} className="">
         {openEditing ?
