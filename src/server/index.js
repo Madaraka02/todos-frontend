@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const REACT_APP_BACKEND_URL = 'http://127.0.0.1:8000/api/'
+// comment the production api url and uncomment the local url to use local host
+// const REACT_APP_BACKEND_URL = 'http://127.0.0.1:8000/api/'
+const REACT_APP_BACKEND_URL = 'https://tms-api.up.railway.app/api/'
+
 
 
 export const hostApi = () => {
