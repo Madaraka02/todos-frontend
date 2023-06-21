@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import Header from '../components/Header';
 import ModalLayout from '../components/modals/ModalLayout';
 import NewTask from '../components/modals/NewTask';
 import Section from '../components/Section';
@@ -15,14 +16,14 @@ function Home() {
   return (
     <>
     <DndProvider backend={HTML5Backend}>
-
-    <div className="container mx-auto w-full">
+    <Header/>
+    <div className="container mx-auto w-full py-20">
 
     <div className='font-satoshi flex flex-col gap-2 w-full p-6 h-full'>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 h-full w-full">
         {statuses?.map((status, index) => (
 
-        <div className="col-span-1 flex flex-col gap-2">
+        <div className="col-span-1 flex flex-col gap-2 h-full w-full">
           <Section status={status}/>
         </div>
         ))}
