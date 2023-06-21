@@ -38,3 +38,54 @@ export const updateTask = async (payload, id) => {
             toast.error(`${error?.response?.data?.fail}`)
         })
 }
+
+export const deletTask = async (id) => {
+
+    const url = (`tasks/${id}/`)
+    ServerRequest('v1')
+        .request({
+            method: "delete",
+            url: url,
+        })
+        .then((res) => {
+            console.log(res);
+            if (res.status === 200 || res.status === 201) {
+                console.log('Submitted 200,201')
+                    toast.info(`${res?.data?.success}`)
+            } else {
+                // console.log('Something occured')
+                toast.error("Something went wrong")
+            }
+        })
+        .catch(error => {
+            // console.log(error);
+            toast.error("Something went wrong")
+        })
+}
+
+
+
+export const addTask = async (payload) => {
+
+    const url = (`tasks/`)
+    ServerRequest('v1')
+        .request({
+            method: "post",
+            url: url,
+            data: JSON.stringify(payload)
+        })
+        .then((res) => {
+            console.log(res);
+            if (res.status === 200 || res.status === 201) {
+                console.log('Submitted 200,201')
+                    toast.info(`${res?.data?.success}`)
+            } else {
+                // console.log('Something occured')
+                toast.error("Something went wrong")
+            }
+        })
+        .catch(error => {
+            // console.log(error);
+            toast.error(`${error?.response?.data?.fail}`)
+        })
+}

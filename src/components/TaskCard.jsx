@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDrag } from 'react-dnd';
-import { updateTask } from '../api/actions';
+import { deletTask, updateTask } from '../api/actions';
 import { CloseIcon, DeleteIcon, EditIcon } from '../assets/icons';
 import DateTimeFormatter from './DateTimeFormatter';
 import ModalLayout from './modals/ModalLayout';
@@ -56,6 +56,18 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
   
 
     }
+
+    const handleDeleteTask = async (id) => {
+      await deletTask(id)
+      .then((data) => {
+        // dispatch to store or set state variable
+        console.log('data',data)
+  
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
     
     
   return (
@@ -63,7 +75,7 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
     <div
     ref={drag}
      className={`font-satoshi w-full relative rounded-md shadow-md px-4 py-3 cursor-pointer ${taskType === 'new'? 'border-amber-300' : taskType === 'progress'? 'border-purple-600' : taskType === 'complete'? 'border-green-600' : ''} border ${isDragging? 'opacity-10':'opacity-100'}`}>
-      <div className=" absolute top-1 right-1 justify-center items-center ">
+      <div onClick={() => handleDeleteTask(taskid)} className=" absolute top-1 right-1 justify-center items-center ">
         <DeleteIcon className='w-5 h-5 text-red-600'/>
       </div>
       <p onClick={() => setOpenDetailsModal(true)} className='line-clamp-2'>{description}</p>

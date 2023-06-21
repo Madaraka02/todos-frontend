@@ -2,23 +2,46 @@ import React, { useState } from 'react'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
+import { addTask } from '../../api/actions';
 
 function NewTask() {
 
     const [description, setDescription] = useState('')
     const [value, setValue] = useState();
+    const [processing, setProcessing] = useState(false)
 
     const handleSubmit = async () => {
-        // setSubmitting('Submitting ...')
+        setProcessing(true)
         const payload = {
-            description:description
+            description:description,
+            end_at:value
         }     
-        // submitDescription(payload)
-        
-        setDescription('')
+        await addTask(payload)
+        .then((data) => {
+            // dispatch to store or set state variable
+            console.log('data',data)
+            setProcessing(false)
+            setDescription('')
+            setValue()
+
+      
+          })
+          .catch((err) => {
+            console.log(err)
+            setProcessing(false)
+            setDescription('')
+            setValue()
+
+          })
     
     }
-    console.log('value',value!==null)
+    const handleDateChange = (newValue) => {
+        const selectedDate = new Date(newValue);
+        const formattedDate = selectedDate.toISOString()
+        setValue(formattedDate);
+      };
+    console.log('value',value)
+    
 
   return (
     <div className='w-full h-full flex flex-col font-satoshi'>
@@ -32,12 +55,12 @@ function NewTask() {
                 <div className="flex flex-col w-full gap-1">
                 <LocalizationProvider dateAdapter={AdapterDayjs} className='w-full' style={{with:'100%'}}>
     
-                    <DateCalendar value={value} onChange={(newValue) => setValue(newValue)} className='w-full'/>
+                    <DateCalendar value={value} onChange={handleDateChange} className='w-full'/>
      
                 </LocalizationProvider>
                 </div>
                 <div className="flex flex-row-reverse w-full">
-                    <button onClick={handleSubmit} className={`${description.length > 0 ? 'bg-blue-600 text-white':'bg-gray-200 pointer-events-none'} px-4 py-2  text-center text-[16px]`}>Add task</button>
+                    <button onClick={handleSubmit} className={`${description.length > 0 ? 'bg-blue-600 text-white':'bg-gray-200 pointer-events-none'} px-4 py-2  text-center text-[16px]`}>{!processing? 'Add task' : 'Submitting...'}</button>
                 </div>
             </div>
         </div>
