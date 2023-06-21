@@ -48,10 +48,12 @@ const TaskCard = ({taskType, description, end_date,taskid}) => {
       await updateTask(dispatch,payload, id)
       .then((data) => {
         // dispatch to store or set state variable
+        setOpenEditing(false)
         console.log('data',data)
   
       })
       .catch((err) => {
+        setOpenEditing(false)
         console.log(err)
       })
   
